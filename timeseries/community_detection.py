@@ -13,10 +13,10 @@ FEATURE_MATRIX_FILE = "feature_matrix.csv"
 network_edges = pd.read_csv(ITERIM_DATA_FOLDER.format(NETWORK_FILE))
 feature_matrix = pd.read_csv(ITERIM_DATA_FOLDER.format(FEATURE_MATRIX_FILE))
 
-weighted_edges = network_edges.loc[:, ["source", "target"]].values.tolist()
+network_edges = network_edges.loc[:, ["source", "target"]].values.tolist()
 
 graph = Graph()
-graph.add_edges_from(weighted_edges)
+graph.add_edges_from(network_edges)
 
 communities = greedy_modularity_communities(graph)
 
