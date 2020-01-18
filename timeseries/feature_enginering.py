@@ -65,7 +65,11 @@ def feature_engineering():
         original_series[feature_fz] = original_series[feature_z].apply(norm.cdf)
         original_series[feature_x] = original_series[feature_fz].apply(lambda x: ceil(x/.2) / (1/.2))
 
-    original_series.to_csv(ITERIM_DATA_FOLDER.format("preprocessed_data.csv"), index=False)
+    # separing data between train and test datasets and saving as csv
+    train = original_series.iloc[:5638, :]
+    test = original_series.iloc[5638:, :]
+    train.to_csv(ITERIM_DATA_FOLDER.format("train.csv"), index=False)
+    test.to_csv(ITERIM_DATA_FOLDER.format("test.csv"), index=False)
 
 
 if __name__ == "__main__":
