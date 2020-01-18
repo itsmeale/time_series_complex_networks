@@ -1,0 +1,1 @@
+- 1 Reparamos que na planilha de benchmark a média de f1 começa a ser calculada a partir do indice 156, consideramos no trabalho que a média da feature f1 começa a ser calculada a partir do indice 56, assim como é realizado com o desvio padrão
