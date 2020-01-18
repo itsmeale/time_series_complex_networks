@@ -28,7 +28,7 @@ def gradient(dataframe, over):
 	return temp_df[new_col]
 
 
-def feature_engineering()
+def feature_engineering():
 	original_series = pd.read_csv(RAW_DATA_FOLDER.format(RAW_DATA_FILE), sep="\t")
 	original_series.columns = ["date", "cp"]
 
@@ -57,39 +57,8 @@ def feature_engineering()
 		original_series[feature_fz] = original_series[feature_z].apply(norm.cdf)
 		original_series[feature_x] = original_series[feature_fz].apply(lambda x: ceil(x/.2) / (1/.2))
 
-	original_series = original_series.loc[
-		:,
-		[
-			"date",
-			"d",
-			"t",
-			"cp",
-			"cpj",
-			"f1",
-			"f2",
-			"f3",
-			"f4",
-			"f5",
-			"f6",
-			"z1",
-			"z2",
-			"z3",
-			"z4",
-			"z5",
-			"z6",
-			"fz1",
-			"fz2",
-			"fz3",
-			"fz4",
-			"fz5",
-			"fz6",
-			"X1",
-			"X2",
-			"X3",
-			"X4",
-			"X5",
-			"X6",
-		]
-	]
+	original_series.to_csv(ITERIM_DATA_FOLDER.format("preprocessed_data.csv"), index=False)
 
-original_series.to_csv(ITERIM_DATA_FOLDER.format("preprocessed_data.csv"), index=False)
+
+if __name__ == "__main__":
+	feature_engineering()
