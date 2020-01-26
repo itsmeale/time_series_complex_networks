@@ -29,4 +29,14 @@ for community_id, community in enumerate(communities):
 
 nodes_communities_df = pd.DataFrame(nodes_communities, columns=["node_id", "community"])
 nodes_communities_df.to_csv(ITERIM_DATA_FOLDER.format("nodes_with_communities.csv"), index=False)
-feature_matrix.to_csv(ITERIM_DATA_FOLDER.format("feature_matrix_with_communities.csv"), index=False)
+
+train = pd.read_csv("data/iterim/train.csv")
+train = train.loc[:, ["t", "cp", "cpj"]]
+
+feature_matrix_with_prices = feature_matrix.merge(
+    right=train,
+    right_on="t",
+    left_on="t"
+)
+
+feature_matrix_with_prices.to_csv("data/iterim/feature_matrix_with_prices_and_communities.csv", index=False)
